@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% if title %}
+		<title> ANC - {{ title }} </title>
+	{% else %}
+		<title>All New Colors</title>
+	{% endif %}
+</head>
+<body>
+	{% block content %}
+	{% endblock %}
+</body>
+</html>

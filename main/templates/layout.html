@@ -19,7 +19,7 @@
 <header class="site-header">
   <nav class="navbar navbar-expand-md navbar-dark bg-yellow fixed-top">
     <div class="container">
-      <a class="navbar-brand mr-4" href="/"><img src='static/img/anc-logo-nav.png'></a>
+      <a class="navbar-brand mr-4" href="/"><img src=" {{ url_for('static', filename='/img/anc-logo-nav.png') }}"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -31,6 +31,7 @@
         <!-- Navbar Right Side -->
         <div class="navbar-nav">
           {% if current_user.is_authenticated %}
+          <a class="nav-item nav-link" href="{{ url_for('new_post') }}">Post</a>
           <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
           <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
           {% else %}
@@ -44,7 +45,7 @@
 </header>
 <main role="main" class="container">
 	<div class="container" style="text-align: center">
-		<img style = "padding-top: 4vh; padding-bottom: 8vh;" src = "static/img/website_logo_transparent_background.png">
+		<img style = "padding-top: 4vh; padding-bottom: 8vh;" src=" {{ url_for('static', filename='/img/website_logo_transparent_background.png') }}">
 	</div>
   <div class="row">
     <div class="col-md-8">

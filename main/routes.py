@@ -143,12 +143,12 @@ def user_posts(username):
 
 def send_reset_email(user):
     token = user.get_reset_token()
-    msg = Message('ANC Password Reset Request', sender='no.reply.anc@gmail.com', recipients=[user.email])
-    msg.body = f'''Visit the following URL to reset your password.
+    msg = Message('ANC Password Reset Request', sender='no-reply@allnewcolors.com', recipients=[user.email])
+    msg.body = f'''To reset your password, visit the following URL:
 
 {url_for('reset_token', token=token, _external=True)}
 
-If you did not make this request, please ignore this email. No changes will be made.
+If you did not make this request please ignore this email. No changes will be made.
 '''
     mail.send(msg)
 

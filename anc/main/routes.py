@@ -1,10 +1,10 @@
 from flask import render_template, request, Blueprint
 from anc.models import Post
 
-main = Blueprint('users', __name__)
+main = Blueprint('main', __name__)
 
 @main.route('/')
-@app.route('/home')
+@main.route('/home')
 def home():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(

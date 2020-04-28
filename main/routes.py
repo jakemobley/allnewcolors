@@ -144,7 +144,8 @@ def user_posts(username):
 def send_reset_email(user):
     token = user.get_reset_token()
     msg = Message('ANC Password Reset Request', sender='no.reply.anc@gmail.com', recipients=[user.email])
-    msg.body = f'''Visit the following link to reset your password.
+    msg.body = f'''Visit the following URL to reset your password.
+
 {url_for('reset_token', token=token, _external=True)}
 
 If you did not make this request, please ignore this email. No changes will be made.
@@ -159,7 +160,7 @@ def reset_request():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         send_reset_email(user)
-        flash('An email has been sent with instructions to reset your password.', 'info')
+        flash('An email has been sent with instructions to reset your password. Please remember to check your spam folder!', 'info')
         return redirect(url_for('login'))
     return render_template('reset_request.html', title='Reset Password', form=form)
 

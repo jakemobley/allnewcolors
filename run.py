@@ -1,4 +1,6 @@
-from anc import app
+from anc import create_app
+
+app = create_app()
 
 if __name__ == '__main__':
 	app.run(debug=True)

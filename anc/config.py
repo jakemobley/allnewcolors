@@ -1,5 +1,7 @@
 import os
 
+#set these values as environment variables prior to deployment.
+
 class Config:
     SECRET_KEY = os.environ.get('ANC_SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = os.environ.get('ANC_SQLALCHEMY_DATABASE_URI')

@@ -9,7 +9,7 @@ This assumes you have python3 and pip already installed on your machine.
 
 ###Clone repository to desired location
 '''
-git clone 
+git clone https://github.com/jakemobley/allnewcolors.git
 '''
 
 ###Setup virtual environment

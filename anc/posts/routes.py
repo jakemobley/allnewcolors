@@ -33,7 +33,8 @@ def update_post(post_id):
         abort(403)
     form = PostForm()
     if form.validate_on_submit():
-        post.title_image = save_title_image(form.title_image.data)
+        if form.title_image.data:
+            post.title_image = save_title_image(form.title_image.data)
         post.markup_type = form.markup_type.data
         post.title = form.title.data
         post.content = form.content.data

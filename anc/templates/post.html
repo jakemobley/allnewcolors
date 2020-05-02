@@ -8,7 +8,6 @@
             <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
             <small class="text-muted">{{ post.date_posted.strftime("%Y-%m-%d, %H:%M:%S") }}</small>
         {% if post.author == current_user %}
-        
         <div>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
             <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
@@ -16,10 +15,12 @@
         {% endif %}
         </div>
         <h2 class="article-title">{{ post.title }}</h2>
-
-        <!---working here --->
+        {% if post.title_image %}
+            <div>
+                <img style = 'max-height: 75vh;' src='/static/title_pics/{{post.title_image}}'>
+            </div>
+        {% endif %}
         {{post.description}}
-
         {% if post.markup_type == "html" %}
             {{ post.content | safe }}
         {% else %}

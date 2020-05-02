@@ -12,7 +12,7 @@ This assumes you have python3 and pip already installed on your machine.
 git clone https://github.com/jakemobley/allnewcolors.git
 ```
 
-###Setup virtual environment
+### Setup virtual environment
 
 I use virtualenv to create isolated project environments. Use whatever virtual environment you prefer. If using virtualenv, you may use the series of commands below on mac and linux in the top level of your application directory.
 ```
@@ -35,7 +35,7 @@ This version uses environment variables as assignments in config.py. These will 
 
 -For password recovery email workflow configure the mail server accordingly in config.py. This example uses gmail smtp (see config.py).
 
-###Initialize Flask development server
+### Initialize Flask development server
 ```
 python run.py
 ```

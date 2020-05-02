@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 from anc import db
 from anc.models import Post
 from anc.posts.forms import PostForm
+from anc.posts.utils import save_title_image
 
 posts = Blueprint('posts', __name__)
 
@@ -12,7 +13,7 @@ def new_post():
     form = PostForm()
     if form.validate_on_submit():
         post = Post(title=form.title.data,
-                    content=form.content.data, author=current_user)
+                    content=form.content.data, author=current_user, markup_type = form.markup_type.data, description = form.description.data, title_image = form.title_image.data)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created.', 'success')
@@ -32,14 +33,20 @@ def update_post(post_id):
         abort(403)
     form = PostForm()
     if form.validate_on_submit():
+        post.title_image = save_title_image(form.title_image.data)
+        post.markup_type = form.markup_type.data
         post.title = form.title.data
         post.content = form.content.data
+        post.description = form.description.data
         db.session.commit()
         flash('Your post has been updated.', 'success')
         return redirect(url_for('posts.post', post_id=post.id))
     elif request.method == 'GET':
         form.title.data = post.title
         form.content.data = post.content
+        form.markup_type.data = post.markup_type
+        form.description.data = post.description
+        form.title_image.data = post.title_image
     return render_template('create_post.html', title='Edit Post', form=form, legend='Update Post')
 
 @posts.route("/post/<int:post_id>/delete", methods=['POST'])

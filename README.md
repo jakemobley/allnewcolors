@@ -1,4 +1,4 @@
-# All New Colors: Mutliuser Flask Blog
+# All New Colors: Multiuser Flask Blog
 Full-stack multiuser flask blog with SQLAlchemy database.
 
 ## GETTING STARTED

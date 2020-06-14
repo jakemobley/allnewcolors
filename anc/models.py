@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
 	image_file = db.Column(db.String(20), nullable=False, default='profile-default.png')
 	password = db.Column(db.String(60), nullable=False)
 	posts = db.relationship('Post', backref='author', lazy=True)
+	account_type = db.Column(db.String(50), nullable=False, default='user')
 
 	def get_reset_token(self, expires_sec=1800):
 		s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -41,6 +42,9 @@ class Post(db.Model):
 	markup_type = db.Column(db.String(10), nullable=True, default="plaintext")
 	description = db.Column(db.String(200), nullable=False)
 	title_image = db.Column(db.String(20), nullable=False)
+	tags = db.Column(db.String(50), nullable=True)
+	featured = db.Column(db.String(3), nullable=False, default='no')
+	edit_queue = db.Column(db.String(3), nullable=False, default='no')
 	
 	def __repr__(self):
 		return f"Post('{self.title}', {self.date_posted}')"

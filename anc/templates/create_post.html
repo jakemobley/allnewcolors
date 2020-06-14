@@ -5,6 +5,38 @@
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">{{ legend }}</legend>
+            {% if current_user.account_type == 'admin' %}
+                <div class="form-group">
+                    {{ form.featured.label(class="form-control-label") }}
+                    {% if form.featured.errors %}
+                    {{ form.featured(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.featured.errors %}
+                        <span> {{error}} </span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.featured(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if current_user.account_type == 'admin' %}
+            <div class="form-group">
+                {{ form.edit_queue.label(class="form-control-label") }}
+                {% if form.edit_queue.errors %}
+                {{ form.featured(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.edit_queue.errors %}
+                    <span> {{error}} </span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.edit_queue(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            {% endif %}
+
             <div class="form-group">
                 {{ form.markup_type.label(class="form-control-label") }}
                 {% if form.markup_type.errors %}
@@ -40,6 +72,20 @@
                 {% endfor %}
                 {% endif %}
                 </div>
+            <div class="form-group">
+                {{ form.tags.label(class="form-control-label") }}
+                {% if form.tags.errors %}
+                {{ form.tags(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.tags.errors %}
+                    <span> {{error}} </span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.tags(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+                
             <div class="form-group">
                 {{ form.description.label(class="form-control-label") }}
                 {% if form.description.errors %}

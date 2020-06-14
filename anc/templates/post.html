@@ -7,24 +7,27 @@
         <div class="article-metadata">
             <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
             <small class="text-muted">{{ post.date_posted.strftime("%Y-%m-%d, %H:%M:%S") }}</small>
-        {% if post.author == current_user %}
+        {% if post.author == current_user or current_user.account_type == 'admin' %}
         <div>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
             <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
         {% endif %}
+        <div class="tag-color">Tags: {{ post.tags }}</div>
         </div>
-        <h2 class="article-title">{{ post.title }}</h2>
+        <h2 class="article-title" style="padding: 10px 0 5px 0">{{ post.title }}</h2>
         {% if post.title_image %}
             <div>
-                <img style = 'max-height: 75vh;' src='/static/title_pics/{{post.title_image}}'>
+                <img style='max-height: 75vh;' src='/static/title_pics/{{post.title_image}}'>
             </div>
         {% endif %}
-        {{post.description}}
+        Description: {{post.description}}<br><br>
         {% if post.markup_type == "html" %}
             {{ post.content | safe }}
         {% else %}
-            {{ post.content }}
+            <p style='color: #808080;'>
+                {{ post.content }}
+            </p>
         {% endif %}
     </div>
 </article>

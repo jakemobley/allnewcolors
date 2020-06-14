@@ -13,3 +13,11 @@ def save_title_image(image):
     i.thumbnail = (output_size)
     i.save(picture_path)
     return picture_fn
+
+def stringify_tags(tag_obj):
+    result = ''
+    for i in tag_obj:
+        result += (i)
+        if i != tag_obj[-1]:
+            result += ', '
+    return result

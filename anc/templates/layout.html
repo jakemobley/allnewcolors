@@ -28,6 +28,10 @@
           <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
           <a class="nav-item nav-link" href="{{ url_for('main.categories') }}">Categories</a>
           <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
+        {% if current_user.account_type == 'admin' %}
+          <a class="nav-item nav-link" href="{{ url_for('main.all') }}">All Posts</a>
+          <a class="nav-item nav-link" href="{{ url_for('main.edit') }}">Edit Queue</a>
+        {% endif %}
         </div>
         <!-- Navbar Right Side -->
         <div class="navbar-nav">
